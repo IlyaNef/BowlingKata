@@ -40,7 +40,7 @@ namespace BowlingGameTests
         [Test]
         public void TestOneStrike()
         {
-            _g.Roll(10);
+            RollStrike();
             _g.Roll(3);
             _g.Roll(5);
             RollMany(17, 0);
@@ -67,5 +67,10 @@ namespace BowlingGameTests
             _g.Roll(3);
             _g.Roll(7);
         }
+
+        private void RollStrike()
+        {
+            _g.Roll(10);
+        } 
     }
 }
