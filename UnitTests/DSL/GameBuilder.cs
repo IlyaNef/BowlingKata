@@ -4,10 +4,17 @@ namespace BowlingGameTests.DSL
 {
     public class GameBuilder
     {
-        private Game _game = new();
+        private int _playersCount = 1;
         public Game Please()
         {
-            return _game;
+            var game = new Game(_playersCount);
+            return game;
+        }
+
+        public GameBuilder WithCountOfPlayers(int playersCount)
+        {
+            _playersCount = playersCount;
+            return this;
         }
     }
 }

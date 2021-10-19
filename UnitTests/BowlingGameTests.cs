@@ -25,10 +25,13 @@ namespace BowlingGameTests
         [Test]
         public void TestOneSpare()
         {
-            var game = Create.Game().Please();
-            game.RollSpare();
-            game.Roll(3);
-            game.RollMany(17, 0);
+            var game = Create.Game()
+                .WithCountOfPlayers(2)
+                .Please();
+            
+            game.RollSpare()
+                .RollOne(3)
+                .RollMany(17, 0);
             Assert.AreEqual(16, game.Score());
         }
 
@@ -36,10 +39,10 @@ namespace BowlingGameTests
         public void TestOneStrike()
         {
             var game = Create.Game().Please();
-            game.RollStrike();
-            game.Roll(3);
-            game.Roll(5);
-            game.RollMany(17, 0);
+            game.RollStrike()
+                .RollOne(3)
+                .RollOne(5)
+                .RollMany(17, 0);
             Assert.AreEqual(26, game.Score());
         }
 
@@ -75,6 +78,12 @@ namespace BowlingGameTests
         {
             game.Roll(10);
             return game;
-        } 
+        }
+
+        public static Game RollOne(this Game game, int pins)
+        {
+            game.Roll(pins);
+            return game;
+        }
     }
 }
